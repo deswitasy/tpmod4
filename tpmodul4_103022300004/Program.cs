@@ -37,5 +37,52 @@ class Program
         string kodePos = KodePos.getKodePos(inputKelurahan);
 
         Console.WriteLine($"Kode pos untuk {inputKelurahan}: {kodePos}");
+
+        Console.WriteLine("\n====================\n");
+
+        DoorMachine pintu = new DoorMachine();
+
+        pintu.BukaPintu();
+        pintu.BukaPintu();
+        pintu.KunciPintu();
+        pintu.KunciPintu();
     }
+}
+
+enum State { Terkunci, Terbuka }
+class DoorMachine
+{
+
+    private State currentState; 
+    public DoorMachine()
+    {
+        currentState = State.Terkunci;
+        Console.WriteLine("Pintu terkunci");
+    }
+    public void KunciPintu()
+    {
+        if (currentState == State.Terbuka)
+        {
+            currentState = State.Terkunci;
+            Console.WriteLine("Pintu terkunci");
+        }
+        else
+        {
+            Console.WriteLine("Pintu sudah terkunci");
+        }
+    }
+    public void BukaPintu()
+    {
+        if (currentState == State.Terkunci)
+        {
+            currentState = State.Terbuka;
+            Console.WriteLine("Pintu tidak terkunci");
+        }
+        else
+        {
+            Console.WriteLine("Pintu sudah terbuka");
+        }
+    }
+
+  
 }
